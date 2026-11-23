@@ -1,0 +1,21 @@
+balance = 10000.0
+
+while True:
+    print(f"\nCurrent Balance: ${balance:.2f}")
+    amount = float(input("Enter withdrawal amount (or 0 to exit): "))
+
+    if amount == 0:
+        print("Thank you for using the ATM. Goodbye!")
+        break
+    elif amount < 0:
+        print("Invalid amount. Please enter a positive value.")
+    elif amount > balance:
+        print("Insufficient funds! Transaction declined.")
+    elif amount % 10 != 0:
+        print("Amount must be a multiple of 10.")
+    else:
+        balance -= amount
+        print(f"Please collect your cash: ${amount:.2f}")
+        if balance == 0:
+            print("Account balance is now $0.00. Exiting.")
+            break

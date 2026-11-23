@@ -1,0 +1,31 @@
+inventory = {}
+
+while True:
+    print("\n1. Add/Update Item  2. Sell/Remove Stock  3. View Inventory  4. Exit")
+    choice = input("Choose an option (1-4): ")
+
+    if choice == "1":
+        item = input("Enter item name: ").strip().title()
+        qty = int(input("Enter quantity to add: "))
+        inventory[item] = inventory.get(item, 0) + qty
+        print(f"Updated {item}: {inventory[item]} in stock.")
+    elif choice == "2":
+        item = input("Enter item name: ").strip().title()
+        if item in inventory:
+            qty = int(input("Enter quantity to remove: "))
+            if qty <= inventory[item]:
+                inventory[item] -= qty
+                print(f"Removed {qty} of {item}. Remaining: {inventory[item]}")
+            else:
+                print("Insufficient stock!")
+        else:
+            print("Item not found.")
+    elif choice == "3":
+        print("\n--- Current Inventory ---")
+        for item, qty in inventory.items():
+            status = " (LOW STOCK!)" if qty < 5 else ""
+            print(f"{item}: {qty}{status}")
+    elif choice == "4":
+        break
+    else:
+        print("Invalid choice.")
